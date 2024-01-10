@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsposts",
+  "info": {
+    "singularName": "newspost",
+    "pluralName": "newsposts",
+    "displayName": "Newspost",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "newsTagline": {
+      "type": "string",
+      "maxLength": 250
+    },
+    "newsImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "newsDescription": {
+      "type": "richtext"
+    },
+    "field": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "newsTagline"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "newspost"
+    }
+  }
+}

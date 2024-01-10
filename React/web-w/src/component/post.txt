@@ -1,0 +1,172 @@
+import { Link } from 'react-router-dom';
+import './Sign.css';
+import { useForm } from 'react-hook-form'
+export default function Sign() {
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors }
+    } = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+    const password = watch("password");
+
+    return (
+        <div className="p-5 m-5">
+            <div className="container">
+                <input type="checkbox" id="flip" />
+                <div className="cover">
+                    <div className="front">
+                        <img src="https://wallpapers.com/images/hd/geometric-maroon-black-red-abstract-art-9zqxwgd44bincdvl.jpg" alt="404" />
+                        <div className="text">
+
+                            <Link className="link text-2" to="/front.html">home
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="back">
+                        <img className="backImg" src="https://wallpapers.com/images/hd/geometric-maroon-black-red-abstract-art-9zqxwgd44bincdvl.jpg" alt="404" />
+                        <div className="text">
+                            <span className="text-1">Complete miles of journey  with one step</span>
+                            <span className="text-2">Let's get started</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="forms">
+                    <div className="form-content">
+                        <div className="login-form">
+                            <div className="title">Login</div>
+                            <form action="/" onSubmit={handleSubmit(onSubmit)}>
+                                <div className="input-boxes">
+                                    <div className="input-box">
+                                        <i className="fas fa-envelope"></i>
+                                        <input type="text"
+                                            className={errors.email ? "is-invalid form-control" : " form-control"}
+                                            {...register("email", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Kindly enter a valid email address"
+                                                },
+                                                pattern: {
+                                                    value: /^\S+@\S+$/i,
+                                                    message: "invalid format"
+                                                }
+                                            })} placeholder="Enter your email" required />
+                                        <span className="text-danger">  {errors.email && errors.email.message}
+                                        </span>
+                                    </div>
+                                    <div className="input-box">
+                                        <i className="fas fa-lock"></i>
+                                        <input type="password"
+                                            className={errors.password ? "is-invalid form-control" : "form-control"}
+                                            {...register("password", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Field required. Please enter password"
+                                                },
+                                                minLength: {
+                                                    value: 8,
+                                                    message: "Passowrd should have atleast 8 characters"
+                                                },
+                                            })} placeholder="Enter your password" required />
+                                        <span className="text-danger">{errors.password && errors.password.message}
+                                        </span>
+                                    </div>
+                                    <div className="text"><a href="/">Forgot password?</a></div>
+                                    <div className="button input-box">
+                                        <input type="submit" value="Sumbit" />
+                                    </div>
+                                    <div className="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="signup-form">
+                            <div className="title">Signup</div>
+                            <form action="/" onSubmit={handleSubmit(onSubmit)}>
+                                <div className="input-boxes">
+                                    <div className="input-box">
+                                        <i className="fas fa-user"></i>
+                                        <input type="text"
+                                            {...register("fullName", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Field required. Please enter your name"
+                                                },
+                                                minLength: {
+                                                    value: 3,
+                                                    message: "Name should have atleast 3 characters"
+                                                },
+                                            })}
+                                            className={errors.fullname ? "is-invalid form-control" : " form-control"} placeholder="User Name" required />
+                                        <span className="text-danger">{errors.fullName && errors.fullName.message}
+                                        </span>
+                                    </div>
+                                    <div className="input-box">
+                                        <i className="fas fa-envelope"></i>
+                                        <input type="text" className={errors.email ? "is-invalid form-control" : " form-control"}
+                                            {...register("email", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Kindly enter a valid email address"
+                                                },
+                                                pattern: {
+                                                    value: /^\S+@\S+$/i,
+                                                    message: "invalid format"
+                                                }
+                                            })}
+                                            placeholder="Enter your email" required />
+                                        <span className="text-danger">  {errors.email && errors.email.message}
+                                        </span>
+                                    </div>
+                                    <div className="input-box">
+                                        <i className="fas fa-lock"></i>
+                                        <input type="password"
+                                            {...register("password", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Field required. Please enter password"
+                                                },
+                                                minLength: {
+                                                    value: 8,
+                                                    message: "Passowrd should have atleast 8 characters"
+                                                },
+                                            })}
+                                            className={errors.password ? "is-invalid form-control" : "form-control"} placeholder="Enter your password" required />
+                                        <span className="text-danger">{errors.password && errors.password.message}
+                                        </span>
+                                    </div>
+                                    <div className="input-box">
+                                        <i className="fas fa-lock"></i>
+                                        <input type="password"
+                                            {...register("confirmPassword", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Field required. Please re-enter password"
+                                                },
+                                                minLength: {
+                                                    value: 8,
+                                                    message: "Passowrd should have atleast 8 characters"
+                                                },
+                                                validate: (value) => value === password || "Password do not match"
+
+                                            })}
+                                            className={errors.confirmpassword ? "is-invalid form-control" : " form-control"} placeholder="Confirm your password" required />
+                                        <span className="text-danger">  {errors.confirmPassword && errors.confirmPassword.message}
+                                        </span>
+                                    </div>
+                                    <div className="button input-box">
+                                        <input type="submit" value="Sumbit" />
+                                    </div>
+                                    <div className="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}

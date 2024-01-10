@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comments",
+  "info": {
+    "singularName": "comment",
+    "pluralName": "comments",
+    "displayName": "Comment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email"
+    },
+    "fullName": {
+      "type": "string"
+    },
+    "newspost": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::newspost.newspost",
+      "inversedBy": "comments"
+    },
+    "commentText": {
+      "type": "text"
+    }
+  }
+}

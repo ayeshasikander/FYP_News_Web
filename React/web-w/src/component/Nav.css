@@ -1,0 +1,30 @@
+.tool {
+    color: #fff;
+}
+
+.off {
+    background: linear-gradient(to right, rgb(8, 8, 8), rgb(51, 9, 9));
+    margin-right: -8%;
+
+}
+
+.off1 {
+    background: linear-gradient(to right, rgb(8, 8, 8), rgb(51, 9, 9));
+
+
+}
+
+.navbar {
+    margin-bottom: 20px;
+    background-image: linear-gradient(326deg, #3f0705 0%, #030202 74%);
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .offcanvas .offcanvas-body {
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 0;
+        padding: 0;
+        overflow-y: visible;
+    }
+}
